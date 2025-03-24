@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Validation Form</title>
+    <script>
+        function validateInput(event) {
+            event.preventDefault(); 
+            let input = document.getElementById("name").value;
+            let message = document.getElementById("message");
+            let confirmation = document.getElementById("confirmation");
+            
+            
+            let regularEx = /^[A-Za-z][A-Za-z.-]*(\s[A-Za-z.-]+)+$/;
+            
+            if (input.trim() === "") {
+                message.innerHTML = "Field cannot be empty!";
+                message.style.color = "red";
+                confirmation.innerHTML = "";
+                return false;
+            } else if (!regularEx.test(input)) {
+                message.innerHTML = "Invalid format! Must contain at least two words, start with a letter, and only include letters, dot, or dash.";
+                message.style.color = "red";
+                confirmation.innerHTML = "";
+                return false;
+            } else {
+                message.innerHTML = "Valid input!";
+                message.style.color = "green";
+                confirmation.innerHTML = "Name submitted successfully!";
+                confirmation.style.color = "blue";
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Validation Form</h2>
+    <form onsubmit="return validateInput(event)">
+        <label for="name">Enter Name:</label>
+        <input type="text" id="name" name="name" onblur="validateInput(event)">
+        <input type="submit" value="Submit">
+        <p id="message"></p>
+        <p id="confirmation"></p>
+    </form>
+</body>
+</html>

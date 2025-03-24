@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gender Validation Form</title>
+    <script>
+        function validateGender(event) {
+            event.preventDefault(); 
+            let genderOptions = document.getElementsByName("gender");
+            let genderMessage = document.getElementById("genderMessage");
+            let confirmation = document.getElementById("confirmation");
+            
+           let selected = false;
+           for (let i = 0; i < genderOptions.length; i++) {
+                if (genderOptions[i].checked) {
+                    selected = true;
+                    
+                    break;
+               }
+            }
+            
+            if (!selected) {
+                genderMessage.innerHTML = "Please select a gender!";
+                genderMessage.style.color = "red";
+                confirmation.innerHTML = "";
+                return false;
+            } else {
+                genderMessage.innerHTML = "Valid selection!";
+                genderMessage.style.color = "green";
+                confirmation.innerHTML = "Form submitted successfully!";
+                confirmation.style.color = "blue";
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Gender Validation Form</h2>
+    <form onsubmit="return validateGender(event)">
+        <label>Select Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="Male"> <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female"> <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="Other"> <label for="other">Other</label><br>
+        
+        <p id="genderMessage"></p>
+        
+        <input type="submit" value="Submit">
+        <p id="confirmation"></p>
+    </form>
+</body>
+</html>

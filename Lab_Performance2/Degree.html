@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Degree Validation Form</title>
+    <script>
+        function validateDegree(event) {
+            event.preventDefault(); 
+            let checkboxes = document.getElementsByName("degree");
+            let degreeMessage = document.getElementById("degreeMessage");
+            let confirmation = document.getElementById("confirmation");
+            
+            let selected = false;
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    selected = true;
+                    break;
+                }
+            }
+            
+            if (!selected) {
+                degreeMessage.innerHTML = "Please select at least one degree!";
+                degreeMessage.style.color = "red";
+                confirmation.innerHTML = "";
+                return false;
+            } else {
+                degreeMessage.innerHTML = "Valid selection!";
+                degreeMessage.style.color = "green";
+                confirmation.innerHTML = "Form submitted successfully!";
+                confirmation.style.color = "blue";
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Degree Validation Form</h2>
+    <form onsubmit="return validateDegree(event)">
+        <label>Select Degree:</label><br>
+        <input type="checkbox" id="ssc" name="degree" value="SSC"> <label for="ssc">SSC</label><br>
+        <input type="checkbox" id="hsc" name="degree" value="HSC"> <label for="hsc">HSC</label><br>
+        <input type="checkbox" id="bsc" name="degree" value="BSC"> <label for="bsc">BSC</label><br>
+        
+        <p id="degreeMessage"></p>
+        
+        <input type="submit" value="Submit">
+        <p id="confirmation"></p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile Picture Upload</title>
+    <script>
+        function validateForm() {
+            var userId = document.getElementById("userId").value.trim();
+            var picture = document.getElementById("picture").value.trim();
+
+            // Validate User ID
+            if (userId === "") {
+                alert("User ID cannot be empty!");
+                return false;
+            }
+
+            if (!/^\d+$/.test(userId) || parseInt(userId) <= 0) {
+                alert("User ID must be a positive number!");
+                return false;
+            }
+
+            // Validate Picture
+            if (picture === "") {
+                alert("Please select a picture to upload!");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+    <form onsubmit="return validateForm()">
+        <label for="userId">User Id</label>
+        <input type="text" id="userId" name="userId"><br><br>
+
+        <label for="picture">Picture</label>
+        <input type="file" id="picture" name="picture"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
