@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Email Validation</title>
+    <script>
+        function validateEmail(event) {
+            event.preventDefault(); 
+            let emailInput = document.getElementById("email").value;
+            let emailMessage = document.getElementById("emailMessage");
+            let confirmation = document.getElementById("confirmation");
+            
+            
+            let emailRegularEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            
+            if (emailInput.trim() === "") {
+                emailMessage.innerHTML = "Email cannot be empty!";
+                emailMessage.style.color = "red";
+                confirmation.innerHTML = "";
+                return false;
+            } else if (!emailRegularEx.test(emailInput)) {
+                emailMessage.innerHTML = "Invalid email format!";
+                emailMessage.style.color = "red";
+                confirmation.innerHTML = "";
+                return false;
+            } else {
+                emailMessage.innerHTML = "Valid email!";
+                emailMessage.style.color = "green";
+                confirmation.innerHTML = "Email submitted successfully!";
+                confirmation.style.color = "blue";
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Email Validation Form</h2>
+    <form onsubmit="return validateEmail(event)">
+        <label for="email">Enter Email:</label>
+        <input type="text" id="email" name="email" onblur="validateEmail(event)">
+        <p id="emailMessage"></p>
+        
+        <input type="submit" value="Submit">
+        <p id="confirmation"></p>
+    </form>
+</body>
+</html>
